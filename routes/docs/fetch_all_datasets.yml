@@ -1,0 +1,28 @@
+get:
+  summary: Fetch all datasets
+  description: Retrieve all datasets with optional filters for owner, tags, and deletion status.
+  parameters:
+    - name: owner
+      in: query
+      type: string
+      required: false
+    - name: tags
+      in: query
+      type: array
+      items:
+        type: string
+      required: false
+      collectionFormat: multi
+    - name: is_deleted
+      in: query
+      type: boolean
+      required: false
+  responses:
+    200:
+      description: Successfully retrieved datasets
+      schema:
+        type: object
+    400:
+      description: Bad request
+    500:
+      description: Server error

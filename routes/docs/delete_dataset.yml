@@ -1,0 +1,15 @@
+delete:
+  summary: Soft delete a dataset
+  description: Marks a dataset as deleted using its ID.
+  parameters:
+    - name: dataset_id
+      in: path
+      required: true
+      type: string
+  responses:
+    200:
+      description: Dataset deleted
+    404:
+      description: Dataset not found
+    500:
+      description: Server error

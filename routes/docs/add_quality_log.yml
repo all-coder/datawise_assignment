@@ -1,0 +1,30 @@
+post:
+  summary: Add a quality log to a dataset
+  description: Add a quality log for a dataset using its ID. Requires status and details in request body.
+  parameters:
+    - name: dataset_id
+      in: path
+      required: true
+      type: string
+    - name: body
+      in: body
+      required: true
+      schema:
+        type: object
+        required:
+          - status
+          - details
+        properties:
+          status:
+            type: string
+            example: "pass"
+          details:
+            type: string
+            example: "All checks passed successfully"
+  responses:
+    201:
+      description: Quality log added successfully
+    400:
+      description: Missing or invalid fields
+    500:
+      description: Server error

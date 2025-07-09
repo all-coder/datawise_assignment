@@ -1,0 +1,15 @@
+get:
+  summary: Get quality logs for a dataset
+  description: Retrieve all quality logs associated with the given dataset ID.
+  parameters:
+    - name: dataset_id
+      in: path
+      required: true
+      type: string
+  responses:
+    200:
+      description: Logs retrieved successfully
+    404:
+      description: No logs found
+    500:
+      description: Server error
