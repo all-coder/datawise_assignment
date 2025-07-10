@@ -2,11 +2,10 @@
 
 ## 🛠️ Setup Instructions
 
-1. **Install MongoDB Atlas**  
-   - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) and create a free cluster.  
-   - Create a database named `datawise`.  
-   - Whitelist your IP and create a user with read/write permissions.  
-   - Note your **Connection URI** (replace `<username>`, `<password>`, and `<cluster-url>` accordingly).  
+1. **Install MongoDB**
+   - Download and install MongoDB on your system.
+   - Allow access from your IP and create a user with read/write permissions.
+   - Note your **Connection URI** with the correct username, password, and cluster URL.
 
 2. **Clone the Repository**  
    ```bash
@@ -29,6 +28,7 @@
    Create a `.env` file in the root directory:
    ```env
    MONGODB_URI="your_mongodb_connection_uri"
+   PYTHONPATH=. 
    ```
 
 6. **Run the Application**  
@@ -38,10 +38,10 @@
 
 ---
 
-## ✅ Running Tests
+## Running Tests
 
 To run the tests, use:
 
 ```bash
-PYTHONPATH=$(pwd) pytest tests/
+dotenv -f .env run pytest tests/   
 ```
