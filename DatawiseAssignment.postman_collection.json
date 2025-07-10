@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "274c0cef-3aec-4df3-849d-6fce41b840f5",
+		"name": "DatawiseAssignment",
+		"description": "### POST /datasets/\n\nCreate a new dataset.\n\n``` json\n{\n  \"name\": \"Image Classification Dataset\",\n  \"owner\": \"alice\",\n  \"description\": \"A dataset for cat vs dog classification\",\n  \"tags\": [\"image\", \"classification\"]\n}\n\n ```\n\nResponse:\n\n``` json\n{\n  \"status\": \"success\",\n  \"dataset_id\": \"60df599f7c213e6b098f7890\"\n}\n\n ```\n\n---\n\n### GET /datasets/\n\nFetch all datasets with optional query filters.\n\nQuery params:\n\n- `owner=alice`\n    \n- `tags=image&tags=classification`\n    \n- `is_deleted=true`\n    \n\nResponse:\n\n``` json\n{\n  \"status\": \"success\",\n  \"datasets\": [\n    {\n      \"id\": \"60df599f7c213e6b098f7890\",\n      \"name\": \"Image Classification Dataset\",\n      \"owner\": \"alice\",\n      \"description\": \"A dataset for cat vs dog classification\",\n      \"tags\": [\"image\", \"classification\"],\n      \"created_at\": \"2024-06-01T12:00:00Z\",\n      \"updated_at\": \"2024-06-01T12:00:00Z\",\n      \"is_deleted\": false\n    }\n  ]\n}\n\n ```\n\n---\n\n### GET /datasets/{dataset_id}\n\nFetch a dataset by its ID.\n\nResponse:\n\n``` json\n{\n  \"status\": \"success\",\n  \"dataset\": {\n    \"id\": \"60df599f7c213e6b098f7890\",\n    \"name\": \"Image Classification Dataset\",\n    \"owner\": \"alice\",\n    \"description\": \"A dataset for cat vs dog classification\",\n    \"tags\": [\"image\", \"classification\"],\n    \"created_at\": \"2024-06-01T12:00:00Z\",\n    \"updated_at\": \"2024-06-01T12:00:00Z\",\n    \"is_deleted\": false\n  }\n}\n\n ```\n\n---\n\n### PUT /datasets/{dataset_id}\n\nUpdate a dataset.\n\n``` json\n{\n  \"name\": \"New Name\",\n  \"description\": \"Updated description\",\n  \"tags\": [\"updated\", \"tags\"]\n}\n\n ```\n\nResponse:\n\n``` json\n{\n  \"status\": \"success\",\n  \"message\": \"Dataset updated successfully\"\n}\n\n ```\n\n---\n\n### DELETE /datasets/{dataset_id}\n\nSoft delete a dataset.\n\nResponse:\n\n``` json\n{\n  \"status\": \"success\",\n  \"message\": \"Dataset soft deleted\"\n}\n\n ```\n\n---\n\n### POST /{dataset_id}/quality-1\n\nAdd a quality log for a dataset.\n\n``` json\n{\n  \"status\": \"PASS\",\n  \"details\": \"All rows passed schema validation\"\n}\n\n ```\n\nResponse:\n\n``` json\n{\n  \"status\": \"success\",\n  \"log_id\": \"64f62b6a4b6b5f33c9d0a8a1\"\n}\n\n ```\n\n---\n\n### GET /{dataset_id}/quality-1\n\nFetch all quality logs for a dataset.\n\nResponse:\n\n``` json\n{\n  \"status\": \"success\",\n  \"logs\": [\n    {\n      \"id\": \"64f62b6a4b6b5f33c9d0a8a1\",\n      \"dataset_id\": \"60df599f7c213e6b098f7890\",\n      \"status\": \"PASS\",\n      \"details\": \"All rows passed schema validation\",\n      \"timestamp\": \"2024-06-01T12:00:00Z\"\n    }\n  ]\n}\n\n ```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36652134"
+	},
+	"item": [
+		{
+			"name": "CreateNewDataset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Retail Sales Q2\",\r\n  \"owner\": \"john_doe\",\r\n  \"tags\": [\"finance\", \"retail\"],\r\n  \"description\": \"Q2 sales data for retail division\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/datasets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"datasets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllDatasets",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetDatasetById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/datasets/686e1d0d3c79c54404aa967c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"datasets",
+						"686e1d0d3c79c54404aa967c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateDatasetById",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/datasets/686e1d0d3c79c54404aa967c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"datasets",
+						"686e1d0d3c79c54404aa967c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SoftDeleteDataset",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/datasets/686e1d0d3c79c54404aa967c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"datasets",
+						"686e1d0d3c79c54404aa967c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddQualityLog",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"PASS\",\r\n  \"details\": \"Schema validated successfully against Q2 standards\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/datasets/686e1d0d3c79c54404aa967c/quality-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"datasets",
+						"686e1d0d3c79c54404aa967c",
+						"quality-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetQualityLogs",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
