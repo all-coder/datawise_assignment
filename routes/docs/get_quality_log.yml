@@ -1,15 +1,38 @@
 get:
+  tags:
+    - QualityLogs
   summary: Get quality logs for a dataset
-  description: Retrieve all quality logs associated with the given dataset ID.
   parameters:
     - name: dataset_id
       in: path
-      required: true
       type: string
+      required: true
   responses:
     200:
-      description: Logs retrieved successfully
-    404:
-      description: No logs found
-    500:
-      description: Server error
+      description: Logs retrieved
+      schema:
+        type: object
+        properties:
+          status:
+            type: string
+            example: success
+          logs:
+            type: array
+            items:
+              $ref: '#/definitions/QLog'
+definitions:
+  QLog:
+    type: object
+    properties:
+      id:
+        type: string
+      dataset_id:
+        type: string
+      status:
+        type: string
+        enum: ["PASS", "FAIL"]
+      details:
+        type: string
+      timestamp:
+        type: string
+        format: date-time

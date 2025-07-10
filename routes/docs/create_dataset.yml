@@ -1,20 +1,45 @@
 post:
+  tags:
+    - Datasets
   summary: Create a new dataset
-  description: Create a dataset by sending JSON payload
   parameters:
     - name: body
       in: body
       required: true
       schema:
-        type: object
-        example:
-          name: "Sample Dataset"
-          owner: "user123"
-          tags: ["tag1", "tag2"]
+        $ref: '#/definitions/NewDataset'
   responses:
     201:
       description: Dataset created
-    400:
-      description: Invalid input
-    500:
-      description: Server error
+      schema:
+        type: object
+        properties:
+          status:
+            type: string
+            example: success
+          dataset_id:
+            type: string
+            example: "60df599f7c213e6b098f7890"
+definitions:
+  NewDataset:
+    type: object
+    required:
+      - name
+      - owner
+      - description
+      - tags
+    properties:
+      name:
+        type: string
+        example: "Image Classification Dataset"
+      owner:
+        type: string
+        example: "alice"
+      description:
+        type: string
+        example: "A dataset for cat vs dog classification"
+      tags:
+        type: array
+        items:
+          type: string
+        example: ["image", "classification"]

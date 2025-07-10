@@ -1,30 +1,40 @@
 post:
-  summary: Add a quality log to a dataset
-  description: Add a quality log for a dataset using its ID. Requires status and details in request body.
+  tags:
+    - QualityLogs
+  summary: Add a quality log for a dataset
   parameters:
     - name: dataset_id
       in: path
-      required: true
       type: string
+      required: true
     - name: body
       in: body
       required: true
       schema:
+        $ref: '#/definitions/NewQLog'
+  responses:
+    201:
+      description: Log added
+      schema:
         type: object
-        required:
-          - status
-          - details
         properties:
           status:
             type: string
-            example: "pass"
-          details:
+            example: success
+          log_id:
             type: string
-            example: "All checks passed successfully"
-  responses:
-    201:
-      description: Quality log added successfully
-    400:
-      description: Missing or invalid fields
-    500:
-      description: Server error
+            example: "60df599f7c213e6b098f7890"
+definitions:
+  NewQLog:
+    type: object
+    required:
+      - status
+      - details
+    properties:
+      status:
+        type: string
+        enum: ["PASS", "FAIL"]
+        example: "PASS"
+      details:
+        type: string
+        example: "All records validated successfully"

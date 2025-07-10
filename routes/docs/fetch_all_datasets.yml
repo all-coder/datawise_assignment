@@ -1,6 +1,7 @@
 get:
+  tags:
+    - Datasets
   summary: Fetch all datasets
-  description: Retrieve all datasets with optional filters for owner, tags, and deletion status.
   parameters:
     - name: owner
       in: query
@@ -9,20 +10,48 @@ get:
     - name: tags
       in: query
       type: array
+      collectionFormat: multi
       items:
         type: string
-      required: false
-      collectionFormat: multi
     - name: is_deleted
       in: query
       type: boolean
       required: false
   responses:
     200:
-      description: Successfully retrieved datasets
+      description: List of datasets
       schema:
         type: object
-    400:
-      description: Bad request
-    500:
-      description: Server error
+        properties:
+          status:
+            type: string
+            example: success
+          datasets:
+            type: array
+            items:
+              $ref: '#/definitions/Dataset'
+definitions:
+  Dataset:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "60df599f7c213e6b098f7890"
+      name:
+        type: string
+      owner:
+        type: string
+      description:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      is_deleted:
+        type: boolean

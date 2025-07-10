@@ -1,15 +1,14 @@
 get:
-  summary: Get dataset by ID
-  description: Retrieve a specific dataset using its unique ID.
+  summary: Get a dataset by ID
+  description: Retrieve a dataset using its unique ID
   parameters:
-    - name: dataset_id
-      in: path
+    - in: path
+      name: dataset_id
       required: true
-      type: string
+      schema:
+        type: string
   responses:
     200:
-      description: Dataset found
+      description: Dataset retrieved
     404:
       description: Dataset not found
-    500:
-      description: Server error
