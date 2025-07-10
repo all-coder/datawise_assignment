@@ -1,3 +1,4 @@
+import os
 import flask
 import flask_cors
 from routes.dataset_routes import dataset_route
@@ -5,12 +6,16 @@ from routes.qlogs_routes import qlog_routes
 from flask import Blueprint
 from utils.mongo_connect import get_db
 from flasgger import Swagger
+from dotenv import load_dotenv
+load_dotenv()
 
 app = flask.Flask(__name__)
 swagger = Swagger(app)
 flask_cors.CORS(app)
 
-db = get_db()
+
+MONGO_DB_URI = os.getenv("MONGO_DB_URI", "mongodb://localhost:27017/")
+db = get_db(MONGO_DB_URI)
 app.config["db"] = db
 
 api = Blueprint('api', __name__)
