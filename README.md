@@ -47,6 +47,16 @@ To access the Swagger UI:
    ```text
    http://localhost:5000/apidocs/
     ```
+---
+### Postman Collection
+
+A Postman collection is included in the repository for testing the API endpoints.
+
+**File:** [`DatawiseAssignment.postman_collection.json`](./DatawiseAssignment.postman_collection.json)
+
+You can import this file into Postman to try out all available routes with example requests.
+
+---
 
 ## Running Tests
 
