@@ -37,6 +37,16 @@
    ```
 
 ---
+## API Documentation
+
+To access the Swagger UI:
+
+1. Make sure the Flask application is running.
+2. Open your browser and navigate to:
+
+   ```text
+   http://localhost:5000/apidocs/
+    ```
 
 ## Running Tests
 
